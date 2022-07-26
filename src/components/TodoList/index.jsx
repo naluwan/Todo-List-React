@@ -19,17 +19,14 @@ const TodoList = memo(() => {
   const [list, setList] = useState(initialList);
   const [filterType, setFilterType] = useState('all');
 
-  const atAddItem = useCallback(
-    (text: string) => {
-      const item: TodoType = {
-        id: new Date().getTime().toString(),
-        text,
-        done: false,
-      };
-      setList(list.concat(item));
-    },
-    [list],
-  );
+  const atAddItem = useCallback((text: string) => {
+    const item: TodoType = {
+      id: new Date().getTime().toString(),
+      text,
+      done: false,
+    };
+    setList((prevList) => [...prevList, item]);
+  }, []);
 
   const atToggleItem = useCallback(
     (id: string) => {
